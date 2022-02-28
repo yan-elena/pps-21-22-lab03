@@ -35,5 +35,4 @@ object AnonymousFunctions extends App {
     f => (i => f(f(i)))
 
   println(l(_ + 1)(10)) // 12, see currying next..
-
 }

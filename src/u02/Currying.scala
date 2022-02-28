@@ -12,7 +12,6 @@ object Currying extends App {
   // slightly different syntax at the call side..
   println(mult(10, 2)) // 20
   println(curriedMult(10)(2)) // 20
-
   // curriedMult can be partially applied!
   val twice: Double => Double = curriedMult(2)
 

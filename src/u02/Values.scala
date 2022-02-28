@@ -16,7 +16,7 @@ object Values extends App {
   println("result is " + v);
 
   // primitive types as expected over the JVM
-  val i: Int = 10 + 5 // as in Java, to be read +(10,5)
+  val i: Int = 10 + 5 // as in Java
   val l: Long = 100000000000L // as in Java
   val d: Double = 5.4 * 1.3 // as in Java
   val f: Float = 3.0f // as in Java

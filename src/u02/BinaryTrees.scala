@@ -1,12 +1,14 @@
 package u02
 
 object BinaryTrees extends App {
-  // A custom and generic binary tree of elements of type A
+  // A custom and generic binary tree of elements of type Aù
+  // Pay attention on how the data and behaviour are structured (how do you implement this in Java??)
   sealed trait Tree[A]
   object Tree {
+    // Data, immutable
     case class Leaf[A](value: A) extends Tree[A]
     case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
-
+    // Operations
     def size[A](t: Tree[A]): Int = t match {
       case Branch(l, r) => size(l) + size(r)
       case _ => 1
