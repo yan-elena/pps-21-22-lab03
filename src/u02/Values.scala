@@ -24,6 +24,6 @@ object Values extends App {
   val s: String = "hello" concat " to all" // String methods as operators
   val n: String = null // null can be passed to "objects", sorry
 
-  println(i, l, d, f, b, s, n) // println has a var-arg
+  println((i, l, d, f, b, s, n)) // println has a var-arg
 
 }
