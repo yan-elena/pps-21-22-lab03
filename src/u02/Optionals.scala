@@ -1,17 +1,18 @@
 package u02
 
-object Optionals extends App {
+object Optionals extends App:
 
-  sealed trait Option[A] // An Optional data type
+  enum Option[A]:
+    case Some(a: A)
+    case None() // here parens are needed because of genericity
+
   object Option:
-    case class None[A]() extends Option[A]
-    case class Some[A](a: A) extends Option[A]
 
     def isEmpty[A](opt: Option[A]): Boolean = opt match
       case None() => true
       case _ => false
 
-    def getOrElse[A, B >: A](opt: Option[A], orElse: B): B = opt match
+    def orElse[A, B >: A](opt: Option[A], orElse: B): B = opt match
       case Some(a) => a
       case _ => orElse
 
@@ -25,8 +26,8 @@ object Optionals extends App {
   val s3: Option[Int] = None()
 
   println(s1) // Some(1)
-  println((getOrElse(s1, 0), getOrElse(s3, 0))) // 1,0
+  println(orElse(s1, 0))
+  println(orElse(s3, 0)) // 1,0
   println(flatMap(s1)(i => Some(i + 1))) // Some(2)
   println(flatMap(s1)(i => flatMap(s2)(j => Some(i + j)))) // Some(3)
   println(flatMap(s1)(i => flatMap(s3)(j => Some(i + j)))) // None
-}

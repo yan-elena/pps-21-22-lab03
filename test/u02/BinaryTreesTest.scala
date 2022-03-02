@@ -2,7 +2,7 @@ package u02
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
-import BinaryTrees.Tree.*
+import BTrees.Tree.*
 
 class BinaryTreesTest {
   val tree = Branch(Branch(Leaf(1), Leaf(2)), Leaf(1))

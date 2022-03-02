@@ -25,12 +25,12 @@ public class ShowcaseJava8 {
                 .collect(toList());
         // sequential
         long time = System.currentTimeMillis();
-        System.out.println(l.stream().reduce((a, b) -> Math.max(a, b)));
+        System.out.println(l.stream().reduce((a,b) -> Math.max(a, b)));
         time = System.currentTimeMillis() - time;
         System.out.println("Time: " + time);
         // parallel
         long time2 = System.currentTimeMillis();
-        System.out.println(l.stream().parallel().reduce((a, b) -> Math.max(a, b)));
+        System.out.println(l.stream().parallel().reduce((a,b) -> Math.max(a, b)));
         time2 = System.currentTimeMillis() - time2;
         System.out.println("Time2: " + time2);
         System.out.println("Gain: " + (((double)time) / time2));

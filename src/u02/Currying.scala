@@ -1,6 +1,6 @@
 package u02
 
-object Currying extends App {
+object Currying extends App:
 
   // standard function with no currying
   def mult(x: Double, y: Double): Double = x * y
@@ -12,6 +12,7 @@ object Currying extends App {
   // slightly different syntax at the call side..
   println(mult(10, 2)) // 20
   println(curriedMult(10)(2)) // 20
+
   // curriedMult can be partially applied!
   val twice: Double => Double = curriedMult(2)
 
@@ -24,5 +25,3 @@ object Currying extends App {
   println(curriedMultAsFunction(10)(2)) // 20
   println(curriedMultAsFunction) // u02.Currying$$$Lambda$7/...
   println(curriedMultAsFunction(10)) // u02.Currying$$$Lambda$12/...
-
-}

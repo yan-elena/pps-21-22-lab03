@@ -1,6 +1,7 @@
 package u02
 
-object AnonymousFunctions extends App {
+object AnonymousFunctions extends App:
+
   // first-class, anonymous functions (lambdas) with various syntax
   val f1 = (x: Int, y: Int) => x + y
   val f2: (Int, Int) => Int = (x: Int, y: Int) => x + y
@@ -9,11 +10,11 @@ object AnonymousFunctions extends App {
   val f5: (Int, Int) => Int = f4
   // val f6 = _ + _ // won't type-check
 
-  println((f1(10, 5), f4(10, 5))) // (15,15)
+  println(s"${f1(10, 5)}, ${f4(10, 5)}") // (15,15)
 
   val g: Int => Int =
     (x: Int) => // a lambda with an imperative body
-      println("hello")
+      println("hello") // note "significant indentation"
       x + 1 // last statement is a return
 
   println(g(10)) // hello \n 11
@@ -35,4 +36,3 @@ object AnonymousFunctions extends App {
     f => (i => f(f(i)))
 
   println(l(_ + 1)(10)) // 12, see currying next..
-}
