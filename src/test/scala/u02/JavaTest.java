@@ -1,6 +1,6 @@
 package u02;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class JavaTest {
     @Test
