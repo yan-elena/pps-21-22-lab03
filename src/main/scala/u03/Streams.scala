@@ -1,7 +1,8 @@
 package u03
 
 object Streams extends App:
-  import Lists._
+
+  import Lists.*
 
   enum Stream[A]:
     private case Empty()
@@ -36,8 +37,7 @@ object Streams extends App:
     def iterate[A](init: => A)(next: A => A): Stream[A] =
       cons(init, iterate(next(init))(next))
 
-    //def drop....
-
+  // TODO: def drop(....)
   end Stream
 
   // var simplifies chaining of functions a bit..

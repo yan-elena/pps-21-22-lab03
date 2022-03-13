@@ -3,7 +3,6 @@ package u03
 object Lazyness extends App:
 
   def loop[A](a: A): A = loop(a)
-
   // standard CALL-BY-VALUE, arguments are evaluated as they are passed
   def sPair[A](a: A, dummy: A): (A, A) = (a, a)
   println(sPair(10, 20)) // (10,10)

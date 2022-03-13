@@ -1,13 +1,18 @@
 package u03
 
-object Lists extends App:
+object EncapsulatedLists extends App:
 
-  // A generic linkedlist
+  // A generic linkedlist with encapsulated state
   enum List[E]:
-    case Cons(head: E, tail: List[E])
-    case Nil()
-  // a companion object (i.e., module) for List
+    private case Cons(head: E, tail: List[E])
+    private case Nil()
+
+  // a companion object (i.e., module) for List: cases are visible
   object List:
+
+    def cons[E](head: E, tail: List[E]): List[E] = Cons(head, tail)
+
+    def nil[E](): List[E] = Nil[E]()
 
     def sum(l: List[Int]): Int = l match
       case Cons(h, t) => h + sum(t)
@@ -22,9 +27,7 @@ object Lists extends App:
       case Cons(_, t) => filter(t)(pred)
       case Nil() => Nil()
 
-  val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
-  println(List.sum(l)) // 60
-
   import List.*
 
+  val l = cons(10, cons(20, cons(30, nil())))
   println(sum(map(filter(l)(_ >= 20))(_ + 1))) // 21+31 = 52
