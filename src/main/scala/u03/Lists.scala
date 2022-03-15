@@ -1,5 +1,7 @@
 package u03
 
+import scala.annotation.tailrec
+
 object Lists extends App:
 
   // A generic linkedlist
@@ -13,34 +15,30 @@ object Lists extends App:
       case Cons(h, t) => h + sum(t)
       case _ => 0
 
-//    def map[A, B](l: List[A])(mapper: A => B): List[B] = l match
-//      case Cons(h, t) => Cons(mapper(h), map(t)(mapper))
-//      case Nil() => Nil()
+    def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(h => Cons(mapper(h), Nil()))
 
-    def map[A, B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(v => Cons(mapper(v), Nil()))
+    def filter[A](l1: List[A])(pred: A => Boolean): List[A] = flatMap(l1)(h => if (pred(h)) Cons(h, Nil()) else Nil())
 
-    def filter[A](l1: List[A])(pred: A => Boolean): List[A] = l1 match
-      case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
-      case Cons(_, t) => filter(t)(pred)
-      case Nil() => Nil()
-
-    def drop[A](l: List[A], n: Int): List[A] = l match {
-      case Cons(h, t) => n match {
+    @tailrec
+    def drop[A](l: List[A], n: Int): List[A] = l match
+      case Cons(h, t) => n match
         case 1 => t
         case _ => drop(t, n - 1)
-      }
       case _ => Nil()
-    }
 
-    def append[A](left: List[A], right: List[A]): List[A] = left match {
+    def append[A](left: List[A], right: List[A]): List[A] = left match
       case Cons(h, t) => Cons(h, append(t, right))
       case Nil() => right
-    }
 
-    def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match {
+    def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match
       case Cons(h, t) => append(f(h), flatMap(t)(f))
       case _ => Nil()
-    }
+      
+    def max(l: List[Int]): Option[Int] = l match
+      case Cons(h, t) => max(t) match
+        case Some(v) if h < v => Some(v)
+        case _ => Some(h)
+      case _ => None
 
   val l = List.Cons(10, List.Cons(20, List.Cons(30, List.Nil())))
   println(List.sum(l)) // 60
