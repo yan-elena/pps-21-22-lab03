@@ -48,10 +48,10 @@ object Lists extends App:
     def filter2[A](l1: List[A])(pred: A => Boolean): List[A] = flatMap(l1)(h => if (pred(h)) Cons(h, Nil()) else Nil())
 
     def max(l: List[Int]): Option[Int] = l match
-    case Cons(h, t) => max(t) match
-      case Some(v) if h < v => Some(v)
-      case _ => Some(h)
-    case _ => None
+      case Cons(h, t) => max(t) match
+        case Some(v) if h < v => Some(v)
+        case _ => Some(h)
+      case _ => None
 
     def getCourses(l: List[Person]): List[String] = flatMap(l) {
       case Teacher(_, c) => Cons(c, Nil())
