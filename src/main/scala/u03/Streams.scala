@@ -47,10 +47,10 @@ object Streams extends App:
       case _ => stream
 
     def constant[A](value: A): Stream[A] = iterate(value)(v => v)
-
-    def fibs: Stream[Int] = map(iterate(0, 1)((a, b) => (b, a + b)))((a, b) => a)
-
+    
   end Stream
+  
+  val fibs: Stream[Int] = Stream.map(Stream.iterate(0, 1)((a, b) => (b, a + b)))((a, b) => a)
 
   // var simplifies chaining of functions a bit..
   var str = Stream.iterate(0)(_ + 1) // {0,1,2,3,..}
